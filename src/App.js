@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import "@fontsource/aileron"
+
+import {
+  ChakraProvider,
+  Box,
+  Grid,
+  theme,
+  extendTheme
+} from '@chakra-ui/react';
+
+import About from './components/About';
+import Portfolio from './components/Portfolio';
+import Contact from './components/Contact';
+import Skills from './components/Skills';
 
 function App() {
+  const theme = extendTheme({
+    fonts: {
+      body: 'Aileron'
+    }
+  })
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Box textAlign="center" fontSize="xl">
+        <Grid minH="100vh" p={3}>
+
+          <Routes>
+            <Route path='/' element={<About />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/portfolio' element={<Portfolio />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/skills' element={<Skills />} />
+          </Routes>
+
+        </Grid>
+      </Box>
+    </ChakraProvider>
   );
 }
 
